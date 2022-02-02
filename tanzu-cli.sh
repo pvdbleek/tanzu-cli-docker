@@ -11,13 +11,13 @@ exit_usage () {
     echo "Usage: tanzu-cli.sh [command] [version]"
     echo "  Where:"
     echo "    [command] is either \"build\" or \"start\""
-    echo "    [version] is either \"0.10.0\", \"1.3.1\", \"1.4.0\" or \"1.4.1\""
+    echo "    [version] is either \"0.10.0\", \"1.3.1\", \"1.4.0\", \"1.4.1\" or \"tce-0.9.1\""
     exit 1
 }
 
 build_image () {
     case $1 in
-      "0.10.0"|"1.3.1"|"1.4.0"|"1.4.1")
+      "0.10.0"|"1.3.1"|"1.4.0"|"1.4.1"|"tce-0.9.1")
         VERSION=$1
         docker build -f dockerfiles/${VERSION}/Dockerfile -t tanzu-cli:${VERSION} .
         ;;
@@ -29,7 +29,7 @@ build_image () {
 
 start_image () {
     case $1 in
-      "0.10.0"|"1.3.1"|"1.4.0"|"1.4.1")
+      "0.10.0"|"1.3.1"|"1.4.0"|"1.4.1"|"tce-0.9.1")
         VERSION=$1
         docker run --rm -ti --network host -v /var/run/docker.sock:/var/run/docker.sock -v ${PWD}/config/${VERSION}/.kube:/root/.kube -v ${PWD}/config/${VERSION}/.kube-tkg:/root/.kube-tkg -v ${PWD}/config/${VERSION}/.config:/root/.config -v ${PWD}/config/${VERSION}/:/root/config/ tanzu-cli:${VERSION} /bin/bash
         ;;
@@ -55,6 +55,7 @@ case $1 in
      ;;
   * )
      exit_usage "Error: $1 is not a valid command."
+     ;;
 esac
 
 exit 0

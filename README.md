@@ -23,6 +23,7 @@ Links:
 * [1.3.1](tanzu-cli-binary-archives/1.3.1)
 * [1.4.0](tanzu-cli-binary-archives/1.4.0)
 * [1.4.1](tanzu-cli-binary-archives/1.4.1)
+* Not needed for `tce-0.9.1`
 
 To build an image (only needed once):
 
