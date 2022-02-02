@@ -53,6 +53,8 @@ case $1 in
   "start")
      start_image $2
      ;;
+  * )
+     exit_usage "Error: $1 is not a valid command."
 esac
 
 exit 0
